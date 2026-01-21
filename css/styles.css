@@ -23,15 +23,19 @@ body {
     color: var(--text);
     background: var(--bg);
     background-image:
-    radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.1) 0%, transparent 20%),
-    radial-gradient(circle at 90% 80%, rgba(99, 102, 241, 0.1) 0%, transparent 20%);
+    radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.25) 0%, transparent 80%),
+    radial-gradient(circle at 90% 80%, rgba(99, 102, 241, 0.25) 0%, transparent 20%),
+    radial-gradient(circle at 00% 100%, rgba(241, 99, 234, 0.25) 5%, transparent 20%),
+    radial-gradient(circle at 100% 00%, rgba(241, 99, 234, 0.25) 5%, transparent 20%);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 
 }
 
 /* Glassmorphic header */
 header {
     backdrop-filter: blur(10px);
-    background: rgba(255, 255, 255, 0.8);
+    background: rgba(200, 200, 200, 0.8);
     border-bottom: 1px solid rgba(0,0,0,0.1);
     padding: 1rem 0;
     position: sticky;
@@ -113,6 +117,12 @@ button {
 button:hover{
     transform: scale(1.05);
     box-shadow: 0 10px 25px rgba(99, 102, 241, 0.3);
+
+}
+
+form {
+    margin: 50px;
+    gap: 2rem;
 
 }
 
