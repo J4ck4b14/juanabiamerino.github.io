@@ -1,8 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\css"
+    "\\css",
+    "\\js"
   ],
-  "SelectedNode": "\\about.html",
+  "SelectedNode": "\\js\\carousel.js",
   "PreviewInSolutionExplorer": false
 }

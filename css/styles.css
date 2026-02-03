@@ -1,18 +1,23 @@
-/* Reset & Variables */
+/* =========================
+   Reset & Variables
+   ========================= */
+
 :root {
     --dark-gray: rgba(37, 42, 52, 1);
-    --fuchsia: rgba(253, 13, 77, 1);
-    --blue: 13, 77, 253;
-    --mint: 13, 253, 189;
-    --ocre: 253, 189, 13;
 
-    --primary: rgba(var(--blue), 0.5);
+    --color-primary: 13, 77, 253;
+    --color-accent: 253, 13, 77;
+    --color-surface: 13, 253, 189;
+
+    --primary: rgba(var(--color-primary), 0.35);
+    --accent: rgba(var(--color-accent), 1);
+    --secondary: rgba(var(--color-surface), 1);
+
     --text: white;
     --bg: var(--dark-gray);
-    --secondary: var(--mint);
-    --card:rgba(var(--mint), 0.6);
-    --accent: var(--fuchsia);
-    --shadow: 0 4px 6px rgba(0,0,0,0.2);
+    --card-bg: rgba(var(--color-surface), 0.15);
+
+    --shadow: 0 6px 15px rgba(0,0,0,0.25);
     --radius: 12px;
     --transition: all 0.3s ease;
 }
@@ -21,45 +26,60 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-
 }
 
+/* =========================
+   Base layout
+   ========================= */
+
 body {
-    font-family:'Segoe UI', system-ui, sans-serif;
+    font-family: 'Segoe UI', system-ui, sans-serif;
     line-height: 1.7;
     color: var(--text);
     background: var(--bg);
     background-image:
-    radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.25) 0%, transparent 80%),
-    radial-gradient(circle at 90% 80%, rgba(99, 102, 241, 0.25) 0%, transparent 20%),
-    radial-gradient(circle at 00% 100%, rgba(241, 99, 234, 0.25) 5%, transparent 20%),
-    radial-gradient(circle at 100% 00%, rgba(241, 99, 234, 0.25) 5%, transparent 20%);
-    background-repeat: no-repeat;
+        radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.18), transparent 70%),
+        radial-gradient(circle at 90% 80%, rgba(241, 99, 234, 0.18), transparent 25%);
     background-attachment: fixed;
-
 }
 
-/* A bit of a trick for a fake text outline/border */
+section {
+    max-width: 1100px;
+    margin: auto;
+    padding: 3rem 2rem;
+}
+
+section h2 {
+    font-size: clamp(2rem, 2vw, 2.5rem);
+    color: var(--secondary);
+    margin-bottom: 1.5rem;
+}
+
+/* =========================
+   Text outline
+   ========================= */
 
 .outline {
-    text-shadow: -2px -2px 0 var(--dark-gray),
-        2px -2px 0 var(--dark-gray),
-        -2px 2px 0 var(--dark-gray),
-        2px 2px 0 var(--dark-gray);
+    text-shadow:
+        -2px -2px 0 var(--dark-gray),
+         2px -2px 0 var(--dark-gray),
+        -2px  2px 0 var(--dark-gray),
+         2px  2px 0 var(--dark-gray);
 }
 
-/* Glassmorphic header */
+/* =========================
+   Header & Navigation
+   ========================= */
+
 header {
-    backdrop-filter: blur(10px) saturate(150%);
-    -webkit-backdrop-filter: blur(10px) saturate(150%); /* Safari Support */
+    backdrop-filter: blur(8px) saturate(120%);
+    -webkit-backdrop-filter: blur(8px) saturate(120%);
     background: var(--primary);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
     padding: 1rem 0;
     position: sticky;
     top: 0;
     z-index: 1000;
-    transition: var(--transition);
-
 }
 
 nav ul {
@@ -67,7 +87,6 @@ nav ul {
     justify-content: center;
     gap: 2rem;
     list-style: none;
-
 }
 
 nav a {
@@ -77,137 +96,202 @@ nav a {
     padding: 0.5rem 1rem;
     border-radius: var(--radius);
     transition: var(--transition);
-
 }
 
 nav a:hover {
     background: var(--accent);
-    color: white;
     transform: translateY(-2px);
-
 }
 
-/* Hero Section */
+/* =========================
+   Hero
+   ========================= */
+
 #home {
     text-align: center;
-    padding: 8rem 2rem 4rem;
-
+    padding: 8rem 2rem 5rem;
 }
+
 #home h1 {
-    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
     color: var(--accent);
 }
 
-#about {
-    padding: 2rem;
+#home p {
+    margin-top: 0.5rem;
+    font-size: 1.15rem;
+    opacity: 0.85;
+    letter-spacing: 0.5px;
 }
 
-#about h2 {
-    font-size: clamp(2rem, 2vw, 2.5rem);
-    color: var(--secondary);
-}
+/* =========================
+   Cards
+   ========================= */
 
-#projects {
-    padding: 2rem;
-
-}
-
-/* Carousel */
-
-.carousel-container {
-    width: 100%;
-    max-width: 1440px;
-    height: 450px;
-    position: relative;
-    perspective: 1000px;
-    margin: 40px auto;
-}
-
-.carousel-track {
-    width: 100%;
-    height: 95%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    transform-style: preserve-3d;
-    transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-/* Cards */
 .card {
-    background: rgba(var(--mint), 0.6);
+    background: var(--card-bg);
     padding: 2rem;
     border-radius: var(--radius);
     box-shadow: var(--shadow);
+    border: 1px solid rgba(255,255,255,0.08);
     transition: var(--transition);
-    border: 1px solid rgba(0,0,0,0.1);
 }
 
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+/* =========================
+   Projects Carousel
+   ========================= */
 
+.carousel-container {
+    position: relative;
+    margin: 2rem auto;
+    overflow: hidden;
 }
 
-/* Navigation arrows */
+.carousel-track {
+    display: flex;
+}
+
+.carousel-item {
+    min-width: 100%;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+}
+
+.carousel-item.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* =========================
+   Project Card Layout
+   ========================= */
+
+.card.project {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.card.project img {
+    width: 280px;
+    height: 180px;
+    object-fit: cover;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+.project-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.project-info h3 {
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+}
+
+.project-info p {
+    opacity: 0.9;
+    line-height: 1.6;
+}
+
+/* ---- View Project Button ---- */
+
+.project-link {
+    align-self: flex-start;
+    margin-top: 1rem;
+    padding: 10px 16px;
+    border-radius: var(--radius);
+    background: linear-gradient(
+        135deg,
+        rgba(var(--color-primary), 0.9),
+        rgba(var(--color-accent), 0.9)
+    );
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.project-link:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.35);
+}
+
+/* =========================
+   Carousel Navigation
+   ========================= */
+
 .nav-arrow {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(8, 42, 123, 0.6);
+    background: rgba(var(--color-primary), 0.6);
     color: white;
-    width: 40px;
-    height: 40px;
+    width: 42px;
+    height: 42px;
     border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    border: none;
     cursor: pointer;
-    z-index: 20;
     font-size: 1.5rem;
-    border: none;
-    outline: none;
+    z-index: 10;
 }
 
-/* (In/Active) Dots */
+.nav-arrow.left { left: -12px; }
+.nav-arrow.right { right: -12px; }
 
+/* =========================
+   Carousel Dots
+   ========================= */
 
-/* Gradient button */
-button {
-    background: linear-gradient(135deg, #6366f1, #8b5cf6);
-    color: white;
-    border: none;
-    padding: 12px 14px;
-    border-radius: var(--radius);
+.carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 1.5rem;
+}
+
+.carousel-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(var(--color-surface), 0.3);
     cursor: pointer;
-    font-weight: 600;
     transition: var(--transition);
-
 }
 
-button:hover{
-    transform: scale(1.05);
-    box-shadow: 0 10px 25px rgba(99, 102, 241, 0.3);
-
+.carousel-dot.active {
+    background: rgba(var(--color-surface), 1);
+    transform: scale(1.3);
 }
 
-form {
-    margin: 50px;
-    gap: 2rem;
+/* =========================
+   Footer
+   ========================= */
 
-}
-
-/* Footer */
 footer {
     text-align: center;
     padding: 2rem;
     margin-top: 4rem;
     background: var(--primary);
-    color: white;
-
 }
 
 footer a {
-    color: rgba(var(--mint), 1);
+    color: var(--secondary);
+}
+
+/* =========================
+   Responsive
+   ========================= */
+
+@media (max-width: 768px) {
+    .card.project {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .project-link {
+        align-self: center;
+    }
 }

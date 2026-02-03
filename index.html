@@ -3,53 +3,105 @@
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Home</title>
+    <title>Juan Abia Merino | Game Developer</title>
     <link rel="stylesheet" href="./css/styles.css">
 </head>
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="projects.html">Projects</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
 
-    <main>
-        <section id="home" class="outline">
-            <h1>Juan Abia Merino</h1>
-            <p>Software Developer</p>
-        </section>
+<header>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+</header>
 
-        <section id="about">
-            <h2>About Me</h2>
-            <p>I'm a chill dude, mainly</p>
-        </section>
+<main>
 
-        <section id="projects">
-            <h2>My Projects</h2>
-            <div class="card">
-                <h3>Project One</h3>
-                <p>Something.</p>
+<section id="home" class="outline">
+    <h1>Juan Abia Merino</h1>
+
+    <p>Gameplay Programmer - Systems Design - Unity & Unreal Engine</p>
+</section>
+
+<section id="about">
+    <h2>About Me</h2>
+
+    <p>
+        Game developer focused on gameplay systems, interaction mechanics,
+        and technical problem-solving. Experienced with Unity, Unreal Engine,
+        multiplayer logic, and AR projects.
+    </p>
+</section>
+
+<section id="projects">
+    <h2>My Projects</h2>
+
+    <div class="carousel-container">
+
+        <button class="nav-arrow left" id="prevBtn">&#10094;</button>
+
+        <div class="carousel-track">
+
+            <div class="card project carousel-item active" data-link="projects.html#multiplayer">
+                <img src="./images/project1.jpg" alt="Multiplayer Project">
+                <div class="project-info">
+                    <h3>Multiplayer Prototype</h3>
+                    <p>
+                        Unity Netcode-based multiplayer prototype featuring
+                        synchronized avatars, shooting mechanics, and power-ups.
+                    </p>
+                    <a class="project-link">View Project</a>
+                </div>
             </div>
-            <div class="card">
-                <h3>Project Two</h3>
-                <p>Something else.</p>
+
+            <div class="card project carousel-item" data-link="projects.html#ar">
+                <img src="./images/project2.jpg" alt="AR Minigame">
+                <div class="project-info">
+                    <h3>AR Minigame</h3>
+                    <p>
+                        Augmented reality minigame developed in Unity and Unreal,
+                        combining interaction, animation, and audio systems.
+                    </p>
+                    <a class="project-link">View Project</a>
+                </div>
             </div>
-        </section>
-    </main>
-    <footer>
-        <p>&copy; 2026 Juan Abia Merino. All rights reserved.</p>
-        <p><a href="mailto:juan.abia.merino@gmail.com?subject=Hello%20There">Contact me</a></p>
-        <div>
-            <a href="https://github.com/J4ck4b14" target="_blank">Github</a>
-            <a href="https://linkedin.com/in/juanabiamerino" target="_blank">LinkedIn</a>
+
+            <div class="card project carousel-item" data-link="projects.html#systems">
+                <img src="./images/project3.jpg" alt="Gameplay Systems">
+                <div class="project-info">
+                    <h3>Gameplay Systems</h3>
+                    <p>
+                        Experimental gameplay mechanics focused on player
+                        interaction and system-driven design.
+                    </p>
+                    <a class="project-link">View Project</a>
+                </div>
+            </div>
+
         </div>
-    </footer>
+
+        <button class="nav-arrow right" id="nextBtn">&#10095;</button>
+    </div>
+
+    <div class="carousel-dots" id="carouselDots"></div>
+</section>
+
+<script src="./js/carousel.js"></script>
+
+</main>
+
+<footer>
+    <p>&copy; 2026 Juan Abia Merino</p>
+    <p><a href="mailto:juan.abia.merino@gmail.com">Contact me</a></p>
+    <div>
+        <a href="https://github.com/J4ck4b14" target="_blank">GitHub</a> ·
+        <a href="https://linkedin.com/in/juanabiamerino" target="_blank">LinkedIn</a>
+    </div>
+</footer>
 
 </body>
-
 </html>

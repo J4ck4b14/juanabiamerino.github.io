@@ -7,40 +7,49 @@
     <link rel="stylesheet" href="./css/styles.css">
 </head>
 <body>
-    <form>
-        
-        <div>
-        <label for="fname">First Name</label>
-        <input type="text" id="fname" name="fname" placeholder="Jack">
-        </div>
 
-        <br>
+<header>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+</header>
 
-        <div>
-        <label for="fsurname">Last Name</label>
-        <input type="text" id="fsurname" name="fsurname" placeholder="Doe">
-        </div>
+<section>
+    <div class="card">
+        <h2>Get in Touch</h2>
+        <p>Feel free to reach out for questions or project propositions.</p>
 
-        <br>
+        <form>
+            <label>First Name*
+                <input type="text" required>
+            </label>
 
-        <div>
-        <label for="fmail">Sender's Email</label>
-        <input type="text" id="fmail" name="fmail" placeholder="jackdoe@email.com">
-        </div>
+            <label>Last Name*
+                <input type="text" required>
+            </label>
 
-        <br>
+            <label>Company
+                <input type="text" required>
+            </label>
 
-        <div>
-            <input type="reset">
-        </div>
+            <label>Email*
+                <input type="email" required>
+            </label>
 
-        <br>
+            <label>Message*
+                <input type="text" required>
+            </label>
 
-        <div>
-            <input type="submit">
-        </div>
+            <div><p><br></p></div>
 
+            <button type="submit" margin>Send Message</button>
+        </form>
+    </div>
+</section>
 
-    </form>
 </body>
 </html>
