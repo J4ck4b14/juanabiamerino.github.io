@@ -13,45 +13,75 @@
     <nav aria-label="Main navigation">
         <ul>
             <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
             <li><a href="projects.html">Projects</a></li>
-            <li><a href="contact.html" class="active">Contact</a></li>
+            <li><a href="contact.html" class="active" aria-current="page">Contact</a></li>
         </ul>
     </nav>
 </header>
 
 <main id="main">
-<section>
-    <div class="card" style="max-width:720px;margin:auto;">
-        <h2>Get in Touch</h2>
+<section aria-labelledby="contact-heading">
+    <div class="card contact-card">
+        <h1 id="contact-heading">Get in Touch</h1>
         <p>Feel free to reach out for questions, collaborations, or project propositions.</p>
 
-        <!-- Using mailto fallback so the form is usable without a backend.
-             For production, replace action with your server endpoint or a form provider. -->
-        <form method="post" action="mailto:juan.abia.merino@gmail.com" enctype="text/plain">
-            <label for="firstName">First Name*<br>
-                <input id="firstName" name="firstName" type="text" required aria-required="true" placeholder="Juan">
-            </label>
+        <!-- Production: replace action with your server endpoint or form provider.
+             Current mailto remains as a no-JS fallback. -->
+        <form id="contactForm" method="post" action="mailto:juan.abia.merino@gmail.com" enctype="text/plain" novalidate>
+            <fieldset>
+                <legend class="visually-hidden">Contact form</legend>
 
-            <label for="lastName">Last Name*<br>
-                <input id="lastName" name="lastName" type="text" required aria-required="true" placeholder="Abia">
-            </label>
+                <div class="row-grid">
+                    <div class="form-row">
+                        <label for="firstName">First Name<span aria-hidden="true">*</span>
+                            <input id="firstName" name="firstName" type="text" required aria-required="true" aria-describedby="firstNameHelp" placeholder="Arthur" autocomplete="given-name">
+                        </label>
+                        <div id="firstNameHelp" class="field-help" aria-hidden="true">Enter your first name.</div>
+                    </div>
 
-            <label for="company">Company<br>
-                <input id="company" name="company" type="text" placeholder="Studio or company (optional)">
-            </label>
+                    <div class="form-row">
+                        <label for="lastName">Last Name<span aria-hidden="true">*</span>
+                            <input id="lastName" name="lastName" type="text" required aria-required="true" aria-describedby="lastNameHelp" placeholder="Morgan" autocomplete="family-name">
+                        </label>
+                        <div id="lastNameHelp" class="field-help" aria-hidden="true">Enter your last name.</div>
+                    </div>
+                </div>
 
-            <label for="email">Email*<br>
-                <input id="email" name="email" type="email" required aria-required="true" placeholder="you@example.com">
-            </label>
+                <div class="form-row">
+                    <label for="company">Company
+                        <input id="company" name="company" type="text" placeholder="Studio or company (optional)" autocomplete="organization">
+                    </label>
+                </div>
 
-            <label for="message">Message*<br>
-                <textarea id="message" name="message" rows="6" required aria-required="true" placeholder="Tell me about your project or question"></textarea>
-            </label>
+                <div class="form-row">
+                    <label for="email">Email<span aria-hidden="true">*</span>
+                        <input id="email" name="email" type="email" required aria-required="true" aria-describedby="emailHelp" placeholder="you@example.com" autocomplete="email">
+                    </label>
+                    <div id="emailHelp" class="field-help" aria-hidden="true">A valid email address so I can get back to you.</div>
+                </div>
 
-            <div style="height:1.5rem;"></div>
+                <div class="form-row">
+                    <label for="message">Message<span aria-hidden="true">*</span>
+                        <textarea id="message" name="message" rows="6" required aria-required="true" aria-describedby="messageHelp" placeholder="Tell me about your project or question" minlength="10"></textarea>
+                    </label>
+                    <div id="messageHelp" class="field-help" aria-hidden="true">Briefly describe your project or question (min 10 characters).</div>
+                </div>
 
-            <button type="submit">Send Message</button>
+                <!-- Honeypot to reduce spam bots (screen-reader hidden) -->
+                <label class="sr-only" aria-hidden="true">
+                    Leave this field blank
+                    <input name="hp_website" type="text" tabindex="-1" autocomplete="off">
+                </label>
+
+                <div style="height:1.5rem;"></div>
+
+                <button id="submitBtn" type="submit">Send Message</button>
+            </fieldset>
         </form>
+
+        <!-- Live region for status messages -->
+        <div id="form-status" class="form-status" role="status" aria-live="polite"></div>
     </div>
 </section>
 </main>
@@ -59,6 +89,96 @@
 <footer>
     <p>&copy; 2026 Juan Abia Merino</p>
 </footer>
+
+<script>
+/*
+  - Client-side validation + user-friendly messages.
+  - Builds a mailto: link and opens it (keeps no-backend behavior).
+  - If JavaScript is disabled the original mailto fallback continues to work.
+*/
+(function () {
+    const form = document.getElementById('contactForm');
+    const statusEl = document.getElementById('form-status');
+    const submitBtn = document.getElementById('submitBtn');
+
+    function setStatus(message, isError) {
+        statusEl.textContent = message;
+        statusEl.style.color = isError ? 'crimson' : 'lightgreen';
+    }
+
+    function validateFields() {
+        const first = form.firstName.value.trim();
+        const last = form.lastName.value.trim();
+        const email = form.email.value.trim();
+        const message = form.message.value.trim();
+        const errors = [];
+
+        if (!first) errors.push('First name is required.');
+        if (!last) errors.push('Last name is required.');
+        if (!email) errors.push('Email is required.');
+        else {
+            // simple email test
+            const re = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+            if (!re.test(email)) errors.push('Please enter a valid email address.');
+        }
+        if (!message || message.length < 10) errors.push('Message must be at least 10 characters.');
+
+        return errors;
+    }
+
+    form.addEventListener('submit', function (e) {
+        // If JS is available we intercept and create a mailto link with encoded body.
+        e.preventDefault();
+
+        // Honeypot check
+        if (form.elements['hp_website'] && form.elements['hp_website'].value) {
+            // Bot likely — silently fail
+            setStatus('Submission blocked.', true);
+            return;
+        }
+
+        const errors = validateFields();
+        if (errors.length) {
+            setStatus(errors.join(' '), true);
+            return;
+        }
+
+        submitBtn.disabled = true;
+
+        const first = encodeURIComponent(form.firstName.value.trim());
+        const last = encodeURIComponent(form.lastName.value.trim());
+        const company = encodeURIComponent(form.company.value.trim());
+        const email = encodeURIComponent(form.email.value.trim());
+        const message = encodeURIComponent(form.message.value.trim());
+
+        const subject = encodeURIComponent('Contact from website — ' + first + ' ' + last);
+        const bodyParts = [
+            'Name: ' + first + ' ' + last,
+            company ? ('Company: ' + company) : null,
+            'Email: ' + email,
+            '',
+            'Message:',
+            message
+        ].filter(Boolean);
+
+        const body = encodeURIComponent(bodyParts.join('\n'));
+
+        // Open mail client using mailto (this keeps behaviour for a no-backend site)
+        const mailto = 'mailto:juan.abia.merino@gmail.com'
+            + '?subject=' + subject
+            + '&body=' + body;
+
+        // Attempt to open mail client
+        window.location.href = mailto;
+
+        // Provide immediate feedback (can't reliably detect success of mail client)
+        setStatus('Your email client should open. If it does not, please send an email to juan.abia.merino@gmail.com.', false);
+
+        // Re-enable after a short delay to avoid stuck disabled button
+        setTimeout(() => { submitBtn.disabled = false; }, 2000);
+    });
+})();
+</script>
 
 </body>
 </html>
