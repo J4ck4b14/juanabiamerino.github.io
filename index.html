@@ -4,15 +4,18 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Juan Abia Merino | Game Developer</title>
+    <meta name="description" content="Juan Abia Merino - Gameplay programmer focusing on systems design, multiplayer and prototype-driven development using Unity & Unreal Engine.">
     <link rel="icon" type="image/fav-icon" href="./images/favicon.ico">
     <link rel="stylesheet" href="./css/styles.css">
 </head>
 <body>
 
+<a class="skip-link" href="#main">Skip to content</a>
+
 <header>
-    <nav>
+    <nav aria-label="Main navigation">
         <ul>
-            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html" class="active">Home</a></li>
             <li><a href="about.html">About</a></li>
             <li><a href="projects.html">Projects</a></li>
             <li><a href="contact.html">Contact</a></li>
@@ -20,7 +23,7 @@
     </nav>
 </header>
 
-<main>
+<main id="main">
 
 <section id="home">
     <h1 class="outline">Juan Abia Merino</h1>
@@ -62,14 +65,14 @@
     system design, and technical experimentation.
     </p>
 
-    <div class="carousel-container">
+    <div class="carousel-container" role="region" aria-label="Featured projects" aria-live="polite">
 
-        <button class="nav-arrow left" id="prevBtn">&#10094;</button>
+        <button class="nav-arrow left" id="prevBtn" aria-label="Previous project">&#10094;</button>
 
         <div class="carousel-track">
 
-            <div class="card project carousel-item active" data-link="projects.html#multiplayer">
-                <img src="./images/project1.jpg" alt="Multiplayer Project">
+            <div class="card project carousel-item active" data-link="projects.html#multiplayer" tabindex="0" aria-hidden="false">
+                <img src="./images/project1.jpg" alt="Multiplayer Prototype screenshot">
                 <div class="project-info">
                     <h3>Multiplayer Prototype</h3>
                     <p>
@@ -80,20 +83,20 @@
                 </div>
             </div>
 
-            <div class="card project carousel-item" data-link="projects.html#ar">
-                <img src="./images/project2.jpg" alt="AR Minigame">
+            <div class="card project carousel-item" data-link="projects.html#ar" tabindex="-1" aria-hidden="true">
+                <img src="./images/project2.jpg" alt="AR Minigame screenshot">
                 <div class="project-info">
                     <h3>AR Minigame</h3>
                     <p>
-                        Augmented reality minigame developed in Unity and Unreal,
+                        Augmented reality minigame developed in Unity,
                         combining interaction, animation, and audio systems.
                     </p>
                     <a class="project-link" href="projects.html#ar">View Project</a>
                 </div>
             </div>
 
-            <div class="card project carousel-item" data-link="projects.html#systems">
-                <img src="./images/project3.jpg" alt="Gameplay Systems">
+            <div class="card project carousel-item" data-link="projects.html#systems" tabindex="-1" aria-hidden="true">
+                <img src="./images/project3.jpg" alt="Gameplay Systems experiments screenshot">
                 <div class="project-info">
                     <h3>Gameplay Systems</h3>
                     <p>
@@ -106,10 +109,10 @@
 
         </div>
 
-        <button class="nav-arrow right" id="nextBtn">&#10095;</button>
+        <button class="nav-arrow right" id="nextBtn" aria-label="Next project">&#10095;</button>
     </div>
 
-    <div class="carousel-dots" id="carouselDots"></div>
+    <div class="carousel-dots" id="carouselDots" aria-hidden="false"></div>
 </section>
 
 <section id="focus">
@@ -157,8 +160,8 @@
         <a href="mailto:juan.abia.merino@gmail.com">juan.abia.merino@gmail.com</a>
     </p>
     <div>
-        <a href="https://github.com/J4ck4b14" target="_blank">GitHub</a>
-        <a href="https://linkedin.com/in/juanabiamerino" target="_blank">LinkedIn</a>
+        <a href="https://github.com/J4ck4b14" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://linkedin.com/in/juanabiamerino" target="_blank" rel="noopener noreferrer">LinkedIn</a>
     </div>
 </footer>
 

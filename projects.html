@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - Juan Abia Merino</title>
+    <meta name="description" content="Projects by Juan Abia Merino - multiplayer prototypes, AR experiments and gameplay systems.">
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+
+<header>
+    <nav aria-label="Main navigation">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="projects.html" class="active">Projects</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main id="main">
+<section id="multiplayer">
+    <h2>Multiplayer Prototype</h2>
+    <div class="card">
+        <p>
+            A fast-paced shooter prototype built in Unity using Netcode for GameObjects.
+            Focused on synchronization of player state, authoritative hit detection, and client-side prediction for smooth movement.
+        </p>
+
+        <h3>Tech stack</h3>
+        <ul>
+            <li>Unity 2021+, C#</li>
+            <li>Netcode for GameObjects, custom reconciliation</li>
+            <li>Basic rollback-friendly input buffering for abilities</li>
+        </ul>
+
+        <h3>Key challenges</h3>
+        <ul>
+            <li>Designing an authority model that reduces perceived latency without opening exploitation vectors.</li>
+            <li>Balancing network update rates vs bandwidth on mobile.</li>
+        </ul>
+
+        <h3>Lessons learned</h3>
+        <p>
+            Prediction + reconciliation tuned to the most frequent interactions (movement and fire) gives the best perceived responsiveness.
+            Decoupling cosmetic animation updates from authoritative state reduced network churn.
+        </p>
+
+        <p>
+            Links:
+            <a href="https://github.com/J4ck4b14/multiplayer-prototype" target="_blank" rel="noopener noreferrer">Source</a>
+            <!-- If you have a playable demo, link here -->
+        </p>
+    </div>
+</section>
+
+<section id="ar">
+    <h2>AR Minigame</h2>
+    <div class="card">
+        <p>
+            An experimental AR minigame combining object tracking, animated UI, and spatial audio.
+            Built as a tech demo for interactive installations.
+        </p>
+
+        <h3>Tech stack</h3>
+        <ul>
+            <li>Unity AR Foundation</li>
+            <li>Custom interaction manager for anchored objects</li>
+        </ul>
+
+        <h3>Lessons learned</h3>
+        <p>
+            Interaction fidelity in AR depends more on latency and predictable feedback than absolute tracking accuracy.
+        </p>
+    </div>
+</section>
+
+<section id="systems">
+    <h2>Gameplay Systems Experiments</h2>
+    <div class="card">
+        <p>
+            Collection of small experiments: state machines for abilities, composable item systems, and deterministic simulation prototypes.
+        </p>
+
+        <h3>Highlights</h3>
+        <ul>
+            <li>Composable ability pipeline used across three prototypes.</li>
+            <li>Deterministic simulation used to validate gameplay balance offline.</li>
+        </ul>
+    </div>
+</section>
+</main>
+
+<footer>
+    <p>&copy; 2026 Juan Abia Merino</p>
+</footer>
+
+</body>
+</html>

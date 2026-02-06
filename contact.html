@@ -4,52 +4,61 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact</title>
+    <meta name="description" content="Contact Juan Abia Merino for collaboration, freelance or consultancy on gameplay systems and multiplayer projects.">
     <link rel="stylesheet" href="./css/styles.css">
 </head>
 <body>
 
 <header>
-    <nav>
+    <nav aria-label="Main navigation">
         <ul>
             <li><a href="index.html">Home</a></li>
             <li><a href="projects.html">Projects</a></li>
-            <li><a href="contact.html">Contact</a></li>
+            <li><a href="contact.html" class="active">Contact</a></li>
         </ul>
     </nav>
 </header>
 
+<main id="main">
 <section>
-    <div class="card">
+    <div class="card" style="max-width:720px;margin:auto;">
         <h2>Get in Touch</h2>
-        <p>Feel free to reach out for questions or project propositions.</p>
+        <p>Feel free to reach out for questions, collaborations, or project propositions.</p>
 
-        <form>
-            <label>First Name*
-                <input type="text" required>
+        <!-- Using mailto fallback so the form is usable without a backend.
+             For production, replace action with your server endpoint or a form provider. -->
+        <form method="post" action="mailto:juan.abia.merino@gmail.com" enctype="text/plain">
+            <label for="firstName">First Name*<br>
+                <input id="firstName" name="firstName" type="text" required aria-required="true" placeholder="Juan">
             </label>
 
-            <label>Last Name*
-                <input type="text" required>
+            <label for="lastName">Last Name*<br>
+                <input id="lastName" name="lastName" type="text" required aria-required="true" placeholder="Abia">
             </label>
 
-            <label>Company
-                <input type="text" required>
+            <label for="company">Company<br>
+                <input id="company" name="company" type="text" placeholder="Studio or company (optional)">
             </label>
 
-            <label>Email*
-                <input type="email" required>
+            <label for="email">Email*<br>
+                <input id="email" name="email" type="email" required aria-required="true" placeholder="you@example.com">
             </label>
 
-            <label>Message*
-                <input type="text" required>
+            <label for="message">Message*<br>
+                <textarea id="message" name="message" rows="6" required aria-required="true" placeholder="Tell me about your project or question"></textarea>
             </label>
 
-            <div><p><br></p></div>
+            <div style="height:1.5rem;"></div>
 
-            <button type="submit" margin>Send Message</button>
+            <button type="submit">Send Message</button>
         </form>
     </div>
 </section>
+</main>
+
+<footer>
+    <p>&copy; 2026 Juan Abia Merino</p>
+</footer>
 
 </body>
 </html>
