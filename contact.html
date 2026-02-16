@@ -133,7 +133,7 @@
 
         // Honeypot check
         if (form.elements['hp_website'] && form.elements['hp_website'].value) {
-            // Bot likely — silently fail
+            // Bot likely ï¿½ silently fail
             setStatus('Submission blocked.', true);
             return;
         }
@@ -152,7 +152,7 @@
         const email = encodeURIComponent(form.email.value.trim());
         const message = encodeURIComponent(form.message.value.trim());
 
-        const subject = encodeURIComponent('Contact from website — ' + first + ' ' + last);
+        const subject = encodeURIComponent('Contact from website ï¿½ ' + first + ' ' + last);
         const bodyParts = [
             'Name: ' + first + ' ' + last,
             company ? ('Company: ' + company) : null,
