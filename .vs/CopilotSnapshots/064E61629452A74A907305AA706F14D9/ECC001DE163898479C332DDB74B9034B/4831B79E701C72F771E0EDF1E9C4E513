@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -60,6 +60,7 @@
                     <p>
                         Links:
                         <a href="https://github.com/J4ck4b14/MultiShooter" target="_blank" rel="noopener noreferrer">Source</a>
+                        <a href=""
                     </p>
                 </footer>
             </article>
@@ -106,52 +107,6 @@
                 </ul>
             </article>
         </section>
-
-        <!-- New section with additional GitHub projects -->
-        <section id="other-projects" aria-labelledby="other-projects-title">
-            <h2 id="other-projects-title">Other Projects</h2>
-
-            <article class="card" role="article" aria-labelledby="multishooter-title">
-                <header>
-                    <h3 id="multishooter-title">MultiShooter</h3>
-                </header>
-                <p>
-                    Multiplayer shooter prototype with basic authoritative server logic and client-side prediction. Includes movement, shooting, and reconciliation systems.
-                    <a href="https://github.com/J4ck4b14/MultiShooter" target="_blank" rel="noopener noreferrer">View on GitHub</a>
-                </p>
-            </article>
-
-            <article class="card" role="article" aria-labelledby="ecsenv-title">
-                <header>
-                    <h3 id="ecsenv-title">ECSEnvPrototype <span class="muted">(Work in progress)</span></h3>
-                </header>
-                <p>
-                    An experimental environment built around an Entity-Component-System to explore performance characteristics and iteration workflows. Actively in development.
-                    <a href="https://github.com/J4ck4b14/ECSEnvPrototype" target="_blank" rel="noopener noreferrer">View on GitHub</a>
-                </p>
-            </article>
-
-            <article class="card" role="article" aria-labelledby="graphcalc-title">
-                <header>
-                    <h3 id="graphcalc-title">Graph-Calculator</h3>
-                </header>
-                <p>
-                    A small tool for plotting mathematical functions and evaluating expressions visually. Useful for quick prototyping of function behaviours and teaching concepts.
-                    <a href="https://github.com/J4ck4b14/Graph-Calculator" target="_blank" rel="noopener noreferrer">View on GitHub</a>
-                </p>
-            </article>
-
-            <article class="card" role="article" aria-labelledby="pythonsnake-title">
-                <header>
-                    <h3 id="pythonsnake-title">PythonSnake</h3>
-                </header>
-                <p>
-                    Classic Snake implemented in Python. Focuses on simple AI opponents and procedural level generation for varied play sessions.
-                    <a href="https://github.com/J4ck4b14/PythonSnake" target="_blank" rel="noopener noreferrer">View on GitHub</a>
-                </p>
-            </article>
-        </section>
-
     </main>
 
     <footer>
